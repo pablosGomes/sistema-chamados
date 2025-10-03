@@ -1,0 +1,407 @@
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --text: #0f1724;
+  --muted: #64748b;
+  --border: #e6edf3;
+  --accent: #3b82f6;
+  --nav: #0f1724;
+  --shadow: rgba(2,6,23,0.06);
+  --scroll-track: #f1f5f9;
+  --scroll-thumb: #cbd5e1;
+}
+
+/* Dark theme variables (ajustadas para melhor harmonia nos cartões) */
+.dark {
+  --bg: #071023;
+  --surface: #071428;    /* superfície geral (ligeiramente mais escura que antes) */
+  --card: #0d1724;       /* cartão: leve contraste com a surface */
+  --text: #e6eef3;
+  --muted: #9aa6b2;
+  --border: rgba(255,255,255,0.04); /* borda sutil nos elementos */
+  --accent: #60a5fa;
+  --nav: #061026;        /* navbar um pouco mais escuro para destacar cards */
+  --shadow: rgba(2,6,23,0.55); /* sombra mais rica para cards */
+  --scroll-track: #071023;
+  --scroll-thumb: #334155;
+}
+
+/* Base application usage */
+html, body, #root { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+/* Base card/panel styling (mais contraste e profundidade no dark) */
+.card, .app-card, .panel, .surface {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px var(--shadow);
+  transition: background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .12s ease;
+  overflow: hidden;
+}
+
+/* hover sutil para destacar cards no desktop */
+@media (hover: hover) {
+  .card:hover, .app-card:hover, .panel:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(2,6,23,0.6);
+  }
+}
+
+/* Basic components use variables */
+.card, .app-card, .panel, .surface {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 6px var(--shadow);
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--scroll-track); }
+::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 3px; }
+
+/* Focus */
+*:focus { outline: 2px solid rgba(59,130,246,0.18); outline-offset: 2px; }
+
+/* Broad Tailwind overrides to make dark mode cover more places */
+.dark body,
+.dark .app,
+.dark .page,
+.dark .container {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* common bg overrides */
+.dark .bg-white,
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-gray-200,
+.dark .bg-gray-300 {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 14px rgba(2,6,23,0.45);
+}
+
+/* navbar / header — mantém navbar sólido e separado visualmente dos cards */
+.dark nav,
+.dark .navbar,
+.dark .site-header,
+.dark .bg-gray-900 {
+  background-color: var(--nav) !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+}
+
+/* text color overrides */
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-black,
+.dark .heading,
+.dark h1, .dark h2, .dark h3 {
+  color: var(--text) !important;
+}
+.dark .text-gray-600,
+.dark .text-gray-500,
+.dark .text-gray-700,
+.dark .muted {
+  color: var(--muted) !important;
+}
+
+/* border overrides */
+.dark .border-gray-200,
+.dark .border-gray-300,
+.dark .border-gray-400 {
+  border-color: rgba(255,255,255,0.03) !important;
+}
+
+/* backgrounds for small surfaces */
+/* Substituído: antes tornava várias utilidades transparentes em dark mode */
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-gray-200 {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+/* navbar / header — garante fundo sólido para <nav> e classes relacionadas */
+.dark nav,
+.dark .navbar,
+.dark .site-header,
+.dark .bg-gray-900 {
+  background-color: var(--nav) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* buttons & interactive elements */
+.dark .btn,
+.dark button,
+.dark .btn-primary {
+  background-color: rgba(255,255,255,0.02);
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: none;
+}
+
+/* badges e pequenos elementos de destaque */
+.dark .badge, .dark .dot {
+  background: rgba(255,255,255,0.02);
+  color: var(--text) !important;
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+/* specific utility classes common in Tailwind markup */
+/* NOTE: classes with "/" must estar escapadas no CSS (.bg-white\/50) */
+.dark .bg-white\/50,
+.dark .bg-white\/70 {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+
+/* utility to make SVG icons follow current text color without removing fills unintentionally */
+.dark svg {
+  color: inherit;
+}
+
+/* prefer stroke for stroke-based icons (lucide uses stroke) */
+.dark svg path,
+.dark svg circle,
+.dark svg line,
+.dark svg rect,
+.dark svg polyline,
+.dark svg polygon {
+  stroke: currentColor !important;
+}
+
+/* only change fill when present and not explicitly none */
+.dark svg [fill]:not([fill="none"]) {
+  fill: currentColor !important;
+}
+
+/* Notification badges / small accents keep color but adapt contrast */
+.dark .badge, .dark .dot {
+  background: rgba(255,255,255,0.03);
+  color: var(--text) !important;
+}
+
+/* bright accents still visible */
+.dark .text-red-600 { color: #ff6b6b !important; }
+.dark .text-green-500 { color: #34d399 !important; }
+.dark .text-yellow-500 { color: #fbbf24 !important; }
+/* --------------------------
+   CARD STYLES (LIGHT + DARK)
+   Objetivo: clareza, hierarquia e harmonia em ambos os modos.
+   - Variáveis: usa --card / --surface / --border / --shadow / --text definidas em :root / .dark
+   - Suaviza sombras no light, aprofunda no dark; mantém bordas sutis e radius consistente.
+   -------------------------- */
+
+/* base card rules (aplicável ao modo claro por padrão) */
+.card,
+.app-card,
+.panel,
+.surface,
+.rounded-2xl {
+  background: linear-gradient(180deg, var(--card, #ffffff) 0%, color-mix(in srgb, var(--card, #ffffff) 92%, #ffffff) 100%);
+  color: var(--text, #111827);
+  border: 1px solid var(--border, rgba(2,6,23,0.06));
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.06);
+  transition: transform .12s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+  overflow: hidden;
+}
+
+/* header/footer inside cards: leve separação e destaque */
+.card > .card-header,
+.card > .px-6, /* many components use px-6 py-4 as header */
+.card > .border-b,
+.rounded-2xl > .border-b {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--card, #ffffff) 95%, #ffffff) 0%, transparent 100%);
+  border-bottom: 1px solid color-mix(in srgb, var(--border, rgba(2,6,23,0.06)) 90%, transparent 10%);
+}
+
+/* subtle hover lift */
+@media (hover: hover) {
+  .card:hover,
+  .app-card:hover,
+  .panel:hover,
+  .rounded-2xl:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 46px rgba(15,23,42,0.12);
+  }
+}
+
+/* badges / tags inside cards - neutral, legível em ambos os modos */
+.badge,
+.tag,
+.chip,
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .22rem .55rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--card, #ffffff) 96%, #0000 4%);
+  color: var(--text, #111827);
+  border: 1px solid color-mix(in srgb, var(--border, rgba(2,6,23,0.06)) 90%, transparent 10%);
+}
+
+/* inputs/selects inside card: leve preenchimento e borda consistente */
+.card input,
+.card select,
+.card textarea,
+.rounded-2xl input,
+.rounded-2xl select {
+  background: color-mix(in srgb, var(--card, #ffffff) 92%, #0000 8%);
+  border: 1px solid color-mix(in srgb, var(--border, rgba(2,6,23,0.06)) 90%, transparent 10%);
+  color: var(--text, #111827);
+  border-radius: 10px;
+}
+
+/* ---------- DARK MODE OVERRIDES ---------- */
+/* usa as variáveis definidas em .dark (var(--card), --surface, --shadow, --border, --text) */
+.dark .card,
+.dark .app-card,
+.dark .panel,
+.dark .surface,
+.dark .rounded-2xl {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card, #0d1724) 100%, #0000 0%) 0%, color-mix(in srgb, var(--card, #0d1724) 96%, #0000 4%) 100%);
+  color: var(--text, #e6eef3);
+  border: 1px solid var(--border, rgba(255,255,255,0.04));
+  box-shadow: 0 10px 30px var(--shadow, rgba(2,6,23,0.55));
+}
+
+/* header in dark: mais contraste que o fundo do card para separar blocos */
+.dark .card > .card-header,
+.dark .card > .px-6,
+.dark .rounded-2xl > .border-b {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+/* badges/tags in dark: reduzir brilho e usar borda sutil */
+.dark .badge,
+.dark .tag,
+.dark .chip,
+.dark .pill {
+  background: rgba(255,255,255,0.02);
+  color: var(--text, #e6eef3);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* special accent cards used as small panels inside a card (ex: info boxes) */
+.card .mini-card,
+.rounded-2xl .mini-card,
+.dark .mini-card {
+  border-radius: 10px;
+  padding: .9rem;
+  border: 1px solid color-mix(in srgb, var(--border, rgba(2,6,23,0.06)) 80%, transparent 20%);
+  background: color-mix(in srgb, var(--card, #ffffff) 96%, #0000 4%);
+}
+
+/* comments / highlighted areas: give them slight blue tint both modes */
+.dark .comments,
+.dark .comment-box {
+  background: linear-gradient(180deg, rgba(96,165,250,0.03), rgba(96,165,250,0.01));
+  border: 1px solid rgba(96,165,250,0.06);
+}
+
+.comments,
+.comment-box {
+  background: linear-gradient(180deg, rgba(14,165,233,0.03), rgba(14,165,233,0.01));
+  border: 1px solid rgba(14,165,233,0.06);
+}
+
+/* small utility to ensure container separations remain visible */
+.card + .card,
+.rounded-2xl + .rounded-2xl {
+  margin-top: .75rem;
+  border-top: 1px solid color-mix(in srgb, var(--border, rgba(2,6,23,0.06)) 80%, transparent 20%);
+}
+
+/* Improve contrast for actionable icons inside cards */
+.card button,
+.rounded-2xl button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: .35rem;
+  border-radius: 8px;
+}
+.card button:hover,
+.rounded-2xl button:hover { background: color-mix(in srgb, var(--card, #ffffff) 94%, #0000 6%); }
+
+/* Notificações: dropdown + itens (mais contraste e legibilidade no dark) */
+.notifications-dropdown {
+  /* garante padding interno consistente quando necessário */
+  --notif-padding: 0;
+}
+
+/* Dark mode: container mais sólido e com separação clara */
+.dark .notifications-dropdown {
+  background-color: var(--card); /* usa cor de card para diferenciar do fundo */
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.6);
+}
+
+/* Itens de notificação (modo escuro): superfície mais escura para lidos, destaque sutil para não-lidos */
+.dark .notifications-dropdown .notification-item {
+  background-color: transparent;
+  color: var(--text);
+}
+
+.dark .notifications-dropdown .notification-item.unread {
+  /* leve gradiente azul/pálido para chamar atenção sem explodir o contraste */
+  background: linear-gradient(90deg, rgba(96,165,250,0.04), rgba(96,165,250,0.02));
+  border-left-width: 4px;
+  border-left-style: solid;
+  /* a cor da borda já é determinada por getNotificationColor (tailwind class border-l-*) */
+}
+
+/* Força contraste dos textos e subtítulo no dropdown */
+.dark .notifications-dropdown h3,
+.dark .notifications-dropdown p,
+.dark .notifications-dropdown span {
+  color: var(--text);
+}
+
+/* Header / footer do dropdown: separar com tonalidade levemente mais clara */
+.dark .notifications-dropdown .border-b,
+.dark .notifications-dropdown .border-t {
+  border-color: rgba(255,255,255,0.03) !important;
+  background-color: rgba(255,255,255,0.01);
+}
+
+/* Hover dos itens no dark: deixar visível */
+.dark .notifications-dropdown .notification-item:hover,
+.dark .notifications-dropdown .notification-item.unread:hover {
+  background-color: rgba(255,255,255,0.02);
+}
+
+/* Ajustes para os badges / timestamps no dropdown */
+.dark .notifications-dropdown .text-xs {
+  color: var(--muted);
+  opacity: 0.95;
+}
+
+/* Small fix: se algum item usar bg-blue-50 (light unread) for aplicado no dark, neutralize */
+.dark .notifications-dropdown .bg-blue-50 {
+  background-color: transparent !important;
+}
